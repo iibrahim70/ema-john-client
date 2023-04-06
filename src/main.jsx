@@ -5,12 +5,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Shop from './components/Shop/Shop';
+import Shop from './components/Pages/Shop';
 import Home from './components/Layout/Home';
-import Orders from './components/Orders';
-import Inventory from './components/Inventory';
-import LogIn from './components/LogIn';
+import Orders from './components/Pages/Orders';
+import Inventory from './components/Pages/Inventory';
+import LogIn from './components/Pages/LogIn';
 import cartProductsLoader from './loaders/cartProductsLoader';
+import Checkout from './components/Checkout';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/inventory', 
         element: <Inventory></Inventory>, 
+      }, 
+      {
+        path: '/checkout', 
+        element: <Checkout></Checkout>, 
       }, 
       {
         path: '/login', 

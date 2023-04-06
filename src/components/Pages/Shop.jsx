@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { addToDb, getShoppingCart } from '../../utilities/fakedb';
-import Cart from '../Cart/Cart';
-import Product from '../Product/Product';
-import './Shop.css'
+import { addToDb, deleteShoppingCart, getShoppingCart } from '../../utilities/fakedb';
+import Cart from '../Cart';
+import Product from '../Layout/Product';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
@@ -38,15 +40,26 @@ const Shop = () => {
     addToDb(product.id);
   }
 
+  const handleClearCart = () => {
+    setCart([]);
+    deleteShoppingCart();
+  }
   return (
-    <div className='shop-container'>
-      <div className='products-container'>
+    <div className='grid grid-cols-16'>
+      <div className='grid grid-cols-3 mt-10 mx-5'>
         {
           products.map(product => <Product key= {product.id} product= {product} handleAddToCart= {handleAddToCart}></Product>)
         }
       </div>
-      <div className='cart-container'>
-        <Cart cart= {cart}></Cart>
+      <div>
+        <Cart cart={cart} handleClearCart={handleClearCart}>
+        <Link to='/orders'>
+          <div className='w-full flex justify-between items-center'>
+            <span>Review Orders</span>
+            <FontAwesomeIcon className='text-white' icon={faArrowRight} />
+          </div>
+        </Link>
+        </Cart>
       </div>
     </div>
   );

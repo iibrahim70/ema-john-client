@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+  nav.header a {
+    @apply ml-8;
+  }
+  nav.header a:hover {
+    @apply hover:text-orange-500;
+  }
+}
